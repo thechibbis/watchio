@@ -1,0 +1,23 @@
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml
+
+# Exclude directories
+.git/
+*.log
+
+# Exclude editor and OS files
+.idea/
+.vscode/
+.DS_Store
+
+# Include shared code
+!shared/
+
+proto/

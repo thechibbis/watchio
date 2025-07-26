@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: worker-streaming-service
+  name: worker-streaming-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worker-streaming-service
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: worker-streaming-service
+    spec:
+      containers:
+        - image: chibilibs/worker-streaming-service
+          name: worker-streaming-service
+          resources: {}
+status: {}

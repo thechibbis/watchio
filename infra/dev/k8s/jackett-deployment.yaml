@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: jackett
+  name: jackett
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jackett
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: jackett
+    spec:
+      containers:
+        - image: lscr.io/linuxserver/jackett:latest 
+          name: jackett
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Etc/UTC"
+            - name: AUTO_UPDATE
+              value: "true"
+          ports:
+            - containerPort: 9117
+              name: http-jackett
+          volumeMounts:
+            - name: jackett-config
+              mountPath: /config
+            - name: jackett-downloads
+              mountPath: /downloads
+          resources: {}
+      volumes:
+        - name: jackett-config
+          hostPath:
+            path: /jackett/config
+            type: DirectoryOrCreate
+        - name: jackett-downloads
+          hostPath:
+            path: /jackett/downloads
+            type: DirectoryOrCreate
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jackett
+spec: 
+  selector:
+    app: jackett
+  ports:
+    - protocol: TCP
+      port: 9117
+      targetPort: 9117
+  type: ClusterIP
