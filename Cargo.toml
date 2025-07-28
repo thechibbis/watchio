@@ -1,0 +1,8 @@
+[workspace]
+resolver = "3"
+members = [
+	"services/api-gateway",
+	"services/catalog",
+	"services/streaming",
+	"services/worker-streaming",
+]

@@ -1,0 +1,40 @@
+apiVersion: skaffold/v4beta13
+kind: Config
+metadata:
+  name: watchio
+build:
+  artifacts:
+    # - image: chibilibs/api-gateway
+    #   context: .
+    #   docker:
+    #     dockerfile: Dockerfile
+    #     buildArgs:
+    #       SERVICE_NAME: api-gateway
+    - image: chibilibs/catalog-service
+      context: .
+      docker:
+        dockerfile: Dockerfile
+        buildArgs:
+          SERVICE_NAME: catalog
+    # - image: chibilibs/streaming-service
+    #   context: .
+    #   docker:
+    #     dockerfile: Dockerfile
+    #     buildArgs:
+    #       SERVICE_NAME: streaming
+    # - image: chibilibs/worker-streaming-service
+    #   context: .
+    #   docker:
+    #     dockerfile: Dockerfile
+    #     buildArgs:
+    #       SERVICE_NAME: worker-streaming
+manifests:
+  rawYaml:
+    - infra/dev/k8s/api-gateway-deployment.yaml
+    - infra/dev/k8s/app-config.yaml
+    - infra/dev/k8s/catalog-service-deployment.yaml
+    - infra/dev/k8s/flaresolverr-deployment.yaml
+    - infra/dev/k8s/jackett-deployment.yaml
+    - infra/dev/k8s/secrets.yaml
+    - infra/dev/k8s/streaming-service-deployment.yaml
+    - infra/dev/k8s/worker-streaming-service-deployment.yaml

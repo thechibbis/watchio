@@ -47,3 +47,7 @@ secrets.yaml
 tmp
 .env
 bin/
+
+# Added by cargo
+
+/target
