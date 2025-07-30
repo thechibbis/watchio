@@ -21,16 +21,11 @@ spec:
         - image: chibilibs/catalog-service
           name: catalog-service
           env:
-            - name: JACKETT_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: app-config
-                  key: JACKETT_URL
-            - name: JACKETT_API_KEY
+            - name: TMDB_API_KEY
               valueFrom:
                 configMapKeyRef:
                   name: secrets
-                  key: JACKETT_API_KEY
+                  key: TMDB_API_KEY
           resources: {}
 status: {}
 ---
@@ -45,8 +40,8 @@ spec:
     app: catalog-service
   ports:
     - protocol: TCP
-      port: 50051
-      targetPort: 50051
+      port: 50052
+      targetPort: 50052
   type:
     ClusterIP # Tipo de serviço: ClusterIP para comunicação interna no cluster
     # Use NodePort ou LoadBalancer para exposição externa

@@ -1,2 +1,34 @@
 syntax = "proto3";
 
+package catalog;
+
+option go_package = "shared/proto/catalog;catalog";
+
+service CatalogService {
+  rpc GetTrendingMovies(GetTrendingMoviesRequest) returns (GetTrendingMoviesResponse);
+  rpc GetTrendingTVShows(GetTrendingTVShowsRequest) returns (GetTrendingTVShowsResponse);
+}
+
+message GetTrendingMoviesRequest {}
+message GetTrendingMoviesResponse {
+  repeated Movies movies = 1;
+}
+
+message GetTrendingTVShowsRequest {}
+message GetTrendingTVShowsResponse {
+  repeated TVShows tv_shows = 1;
+}
+
+message Movies {
+  int64 id = 1;
+  string title = 2;
+  repeated int64 genre_ids = 3;
+  string release_date = 4;
+}
+
+message TVShows {
+  int64 id = 1;
+  string title = 2;
+  repeated int64 genre_ids = 3;
+  string release_date = 4;
+}

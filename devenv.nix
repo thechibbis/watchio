@@ -12,13 +12,13 @@
   packages = [
     pkgs.git
     pkgs.skaffold
+    pkgs.proto
+    pkgs.protobuf
+    pkgs.grpcui
   ];
 
   # https://devenv.sh/languages/
-  languages.rust = {
-    enable = true;
-    channel = "stable";
-  };
+  languages.go.enable = true;
 
   # https://devenv.sh/processes/
   # processes.cargo-watch.exec = "cargo-watch";
