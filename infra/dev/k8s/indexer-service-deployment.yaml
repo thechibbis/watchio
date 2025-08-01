@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: indexer-service
+  name: indexer-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: indexer-service
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: indexer-service
+    spec:
+      containers:
+        - image: chibilibs/indexer-service
+          name: indexer-service
+          resources: {}
+          env:
+            - name: JACKETT_API_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: secrets
+                  key: JACKETT_API_KEY
+            - name: JACKETT_API_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: JACKETT_API_URL
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: indexer-service
+  labels:
+    app: indexer-service
+spec:
+  selector:
+    app: indexer-service
+  ports:
+    - protocol: TCP
+      port: 50053
+      targetPort: 50053
+  type:
+    ClusterIP

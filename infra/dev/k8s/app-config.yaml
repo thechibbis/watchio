@@ -5,5 +5,5 @@ metadata:
 data:
   ENVIRONMENT: "dev"
 
-  JACKETT_URL: "http://jackett:9117"
+  JACKETT_API_URL: "http://jackett:9117"
 

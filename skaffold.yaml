@@ -12,6 +12,10 @@ build:
       context: .
       docker:
         dockerfile: services/catalog/Dockerfile
+    - image: chibilibs/indexer-service
+      context: .
+      docker:
+        dockerfile: services/indexer/Dockerfile
     # - image: chibilibs/streaming-service
     #   context: .
     #   docker:
@@ -22,11 +26,12 @@ build:
     #     dockerfile: services/worker-streaming/Dockerfile
 manifests:
   rawYaml:
-    # - infra/dev/k8s/api-gateway-deployment.yaml
     - infra/dev/k8s/app-config.yaml
+    - infra/dev/k8s/secrets.yaml
+    # - infra/dev/k8s/api-gateway-deployment.yaml
     - infra/dev/k8s/catalog-service-deployment.yaml
+    - infra/dev/k8s/indexer-service-deployment.yaml
     - infra/dev/k8s/flaresolverr-deployment.yaml
     - infra/dev/k8s/jackett-deployment.yaml
-    - infra/dev/k8s/secrets.yaml
     # - infra/dev/k8s/streaming-service-deployment.yaml
     # - infra/dev/k8s/worker-streaming-service-deployment.yaml
