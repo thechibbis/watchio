@@ -33,7 +33,7 @@ func main() {
 	pb.RegisterCatalogServiceServer(grpcServer, catalogHandler)
 	reflection.Register(grpcServer)
 
-	log.Printf("Catalog Service running at: %s\n", addr)
+	log.Printf("Catalog Service listening at: %s\n", addr)
 
 	if err := grpcServer.Serve(lis); err != nil {
 		log.Fatalf("Cannot initialize catalog service: %v\n", err)

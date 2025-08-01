@@ -31,12 +31,8 @@ func (h *CatalogHandler) GetTrendingMovies(ctx context.Context, req *pb.GetTrend
 	moviesPb := make([]*pb.Movies, 0, len(movies))
 
 	for _, e := range movies {
-		moviesPb = append(moviesPb, &pb.Movies{
-			Id:          e.ID,
-			Title:       e.Title,
-			GenreIds:    e.GenreIds,
-			ReleaseDate: e.ReleaseDate,
-		})
+		toProto := e.ToProto()
+		moviesPb = append(moviesPb, &toProto)
 	}
 
 	return &pb.GetTrendingMoviesResponse{
@@ -53,12 +49,8 @@ func (h *CatalogHandler) GetTrendingTVShows(ctx context.Context, req *pb.GetTren
 	tvShowsPb := make([]*pb.TVShows, 0, len(tvShows))
 
 	for _, e := range tvShows {
-		tvShowsPb = append(tvShowsPb, &pb.TVShows{
-			Id:          e.ID,
-			Title:       e.Title,
-			GenreIds:    e.GenreIds,
-			ReleaseDate: e.ReleaseDate,
-		})
+		toProto := e.ToProto()
+		tvShowsPb = append(tvShowsPb, &toProto)
 	}
 
 	return &pb.GetTrendingTVShowsResponse{

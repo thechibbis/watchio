@@ -21,7 +21,7 @@ func NewTMBDRepository[T domain.Movie | domain.TVShows]() *TMDBRepository[T] {
 
 	client.SetClientAutoRetry()
 
-	return &TMDBRepository[T]{Client: client}
+	return &TMDBRepository[T]{client}
 }
 
 func (r *TMDBRepository[T]) GetTrending() ([]T, error) {
